@@ -30,7 +30,30 @@ goal_dataframe_mapping = {
     'Land a Placement Year':goal_3,
     'Win Awards & Competitions':goal_4,
     'Secure a Graduate Job':goal_5,
-    'Find a Co-founder & Start a Business':goafor x in Goals:
+    'Find a Co-founder & Start a Business':goal_6
+    'Meet Like-minded Students & join Societies':goal_7,
+    'Expand my Network & Connect with Industry Leaders':goal_8,
+    'No goals selected' : goal_9} 
+
+goals = ['Start my Career with a Spring Week','Get a Summer Internship','Get an Internship alongside my Studies', 'Land a Placement Year','Win Awards & Competitions','Secure a Graduate Job','Find a Co-founder & Start a Business', 'Meet like-minded students','Expand my Network & Meet Industry Leader']
+Goals =  st.multiselect('Enter the goals',goals,key = "one")
+interest = st.multiselect('Enter the interest',df_tags['name'].unique(),key = "two")
+weight = [1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,1,2,1,1,2,1,2,1,2,1,2]
+Weight = st.multiselect('Enter the weight',weight,key = "three")
+Interest = pd.DataFrame(interest,columns = ['Interest'])
+Weight = pd.DataFrame(Weight,columns = ['Weight'])
+df_interest = pd.concat([Interest,Weight],axis = 1)
+University = st.selectbox('Enter the university',df_universities['name'].unique(),key = 'four')
+Degree =  st.selectbox('Enter the degree',df_degrees['name'].unique(),key = 'five')
+Subject = st.selectbox('Enter the subject',df_subjects['subject_name'].unique(),key = 'six')
+#Subject = pd.DataFrame(Subject,columns = ['Subject'])
+#Score = [1]
+#subjectscore = pd.DataFrame(Score,columns = ['subject score'])
+#df_subject = pd.concat([Subject,subjectscore],axis = 1)
+year = ['First Year ','Second Year','Third Year','Final Year']
+Year = st.selectbox('Enter the year',year,key = 'seven')
+data = []
+for x in Goals:
 
     data.append(pd.DataFrame(goal_dataframe_mapping[x]))
     
@@ -132,26 +155,4 @@ df = df.sort_values(by='matching score',ascending=False)
  
  
 st.write(df)
-    'Meet Like-minded Students & join Societies':goal_7,
-    'Expand my Network & Connect with Industry Leaders':goal_8,
-    'No goals selected' : goal_9} 
-
-goals = ['Start my Career with a Spring Week','Get a Summer Internship','Get an Internship alongside my Studies', 'Land a Placement Year','Win Awards & Competitions','Secure a Graduate Job','Find a Co-founder & Start a Business', 'Meet like-minded students','Expand my Network & Meet Industry Leader']
-Goals =  st.multiselect('Enter the goals',goals,key = "one")
-
-interest = st.multiselect('Enter the interest',df_tags['name'].unique(),key = "two")
-weight = [1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,1,2,3,3,2,1,3,3,2,1,1,2,3,3,2]
-Weight = st.multiselect('Enter the weight',weight,key = "three")
-Interest = pd.DataFrame(interest,columns = ['Interest'])
-Weight = pd.DataFrame(Weight,columns = ['Weight'])
-df_interest = pd.concat([Interest,Weight],axis = 1)
-University = st.selectbox('Enter the university',df_universities['name'].unique(),key = 'four')
-Degree =  st.selectbox('Enter the degree',df_degrees['name'].unique(),key = 'five')
-Subject = st.selectbox('Enter the subject',df_subjects['subject_name'].unique(),key = 'six')
-#Subject = pd.DataFrame(Subject,columns = ['Subject'])
-#Score = [1]
-#subjectscore = pd.DataFrame(Score,columns = ['subject score'])
-#df_subject = pd.concat([Subject,subjectscore],axis = 1)
-year = ['First Year ','Second Year','Third Year','Final Year']
-Year = st.selectbox('Enter the year',year,key = 'seven')
-data = []
+    
